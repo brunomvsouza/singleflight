@@ -167,7 +167,7 @@ func TestForget(t *testing.T) {
 	)
 
 	go func() {
-		g.Do("key", func() (i interface{}, e error) {
+		_, _, _ = g.Do("key", func() (i interface{}, e error) {
 			close(firstStarted)
 			<-unblockFirst
 			close(firstFinished)
@@ -240,7 +240,7 @@ func TestPanicDo(t *testing.T) {
 				}
 			}()
 
-			g.Do("key", fn)
+			_, _, _ = g.Do("key", fn)
 		}()
 	}
 
@@ -306,7 +306,7 @@ func executable(t testing.TB) string {
 func TestPanicDoChan(t *testing.T) {
 	if os.Getenv("TEST_PANIC_DOCHAN") != "" {
 		defer func() {
-			recover()
+			_ = recover()
 		}()
 
 		g := new(Group)
@@ -349,9 +349,9 @@ func TestPanicDoSharedByDoChan(t *testing.T) {
 		g := new(Group)
 		go func() {
 			defer func() {
-				recover()
+				_ = recover()
 			}()
-			g.Do("", func() (interface{}, error) {
+			_, _, _ = g.Do("", func() (interface{}, error) {
 				close(blocked)
 				<-unblock
 				panic("Panicking in Do")
