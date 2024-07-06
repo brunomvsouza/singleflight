@@ -40,6 +40,17 @@ jobs:
       matrix:
         go: [ '1.22.x', '1.21.x', '1.20.x', '1.19.x', '1.18.x' ]
         os: [ ubuntu-latest ]
+        include:
+          - go: '1.22.x'
+            go_experiment: 'nocoverageredesign'
+          - go: '1.21.x'
+            go_experiment: ''
+          - go: '1.20.x'
+            go_experiment: ''
+          - go: '1.19.x'
+            go_experiment: ''
+          - go: '1.18.x'
+            go_experiment: ''
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -51,6 +62,8 @@ jobs:
           go-version: ${{ matrix.go }}
 
       - name: Test
+        env:
+          GOEXPERIMENT: ${{ matrix.go_experiment }}
         run: go test ./... -v -race -coverprofile=./cover.out
 
       - name: Check Test Coverage
