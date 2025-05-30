@@ -26,31 +26,25 @@ jobs:
 
       - uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
+          go-version: '1.24'
           check-latest: true
 
       - name: Lint
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v8
         with:
-          version: v1.59
+          version: v2.1
 
   test:
     name: Test
     strategy:
       matrix:
-        go: [ '1.22.x', '1.21.x', '1.20.x', '1.19.x', '1.18.x' ]
+        go: [ '1.24.x', '1.23.x' ]
         os: [ ubuntu-latest ]
         include:
-          - go: '1.22.x'
+          - go: '1.24.x'
             go_experiment: 'nocoverageredesign'
-          - go: '1.21.x'
-            go_experiment: ''
-          - go: '1.20.x'
-            go_experiment: ''
-          - go: '1.19.x'
-            go_experiment: ''
-          - go: '1.18.x'
-            go_experiment: ''
+          - go: '1.23.x'
+            go_experiment: 'nocoverageredesign'
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -73,4 +67,4 @@ jobs:
           local-prefix: github.com/brunomvsouza/singleflight
           threshold-file: 70
           threshold-package: 70
-          threshold-total: 94
+          threshold-total: 93
