@@ -1,6 +1,6 @@
 # Singleflight with Generics!
 
-[![GoDoc](https://godoc.org/github.com/brunomvsouza/singleflight?status.svg)](https://godoc.org/github.com/brunomvsouza/singleflight)
+[![GoDoc]([https://godoc.org/github.com/brunomvsouza/singleflight?status.svg](https://pkg.go.dev/badge/github.com/brunomvsouza/singleflight))]([https://godoc.org/github.com/brunomvsouza/singleflight](https://pkg.go.dev/github.com/brunomvsouza/singleflight))
 
 > Package singleflight provides a duplicate function call suppression mechanism.
 
@@ -15,6 +15,6 @@ For usage examples, see [examples_test.go](examples_test.go).
 
 ### Updates & Versioning
 
-- This package will be kept in sync with the original `x/sync/singleflight` package until it adds native generic support.
+- This package will be kept in sync with the original `golang.org/x/sync/singleflight` package until it adds native generic support.
 - Version tags will align with the original package's versioning.
 - **If you notice an update before I do, please open an issue or submit a pull request**.
