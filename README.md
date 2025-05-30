@@ -4,16 +4,17 @@
 
 > Package singleflight provides a duplicate function call suppression mechanism.
 
-This fork adds generics support (`Group[K comparable, V any]` and `Result[V any]`) to the original [x/sync/singleflight](https://golang.org/x/sync/singleflight) package.
+A type-safe wrapper around [golang.org/x/sync/singleflight](https://golang.org/x/sync/singleflight) that adds generic type support.
+
+- No more type assertions needed in your code:
+  - `Group[K ~string, V any]` - A type-safe version of the original Group.
+  - `Result[V any]` - A generic version of the Result type.
+- 100% compatible with the original package, maintaining identical behavior.
+
+For usage examples, see [examples_test.go](examples_test.go).
 
 ### Updates & Versioning
 
-- I will keep this package up-to-date with the original one, at least until `x/sync/singleflight` adds support for generics. **If you notice an update before I do, please open an issue or submit a pull request**.
-- Versions will be tagged to align with the same versioning as the `x/sync/singleflight` package.
-
-### Usage
-
-For example usage, see:
-- [Group.Do](examples/Do/main.go)
-- [Group.DoChan](examples/DoChan/main.go)
-- [Group.DoForget](examples/Forget/main.go)
+- This package will be kept in sync with the original `x/sync/singleflight` package until it adds native generic support.
+- Version tags will align with the original package's versioning.
+- **If you notice an update before I do, please open an issue or submit a pull request**.
